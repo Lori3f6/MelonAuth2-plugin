@@ -1,0 +1,4 @@
+name: MelonAuth2-Plugin
+main: moe.langua.lab.minecraft.auth.v2.client.bungee.Bootstrap
+author: langua
+version: 1.0

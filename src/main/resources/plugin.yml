@@ -1,0 +1,5 @@
+name: MelonAuth2-Plugin
+main: moe.langua.lab.minecraft.auth.v2.client.spigot.Bootstrap
+version: 1.0
+author: langua
+api-version: 1.13
