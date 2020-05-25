@@ -71,12 +71,12 @@ public class MelonAuthClient {
 
     public VerificationResult getVerify(UUID uniqueID) throws VerificationFailedException, IOException {
         URL getURL;
-        getURL = new URL(config.getApiURL() + "/get/uuid/" + uniqueID.toString());
+        getURL = new URL(config.getApiURL() + "/join/" + uniqueID.toString());
 
         HttpURLConnection connection = (HttpURLConnection) getURL.openConnection();
         connection.setRequestProperty("Authorization", Long.toHexString(otpServer.getPassNow()));
         connection.setConnectTimeout(5000);
-        connection.setReadTimeout(10000);
+        connection.setReadTimeout(5000);
         connection.setRequestMethod("GET");
         connection.setUseCaches(false);
         int rCode = connection.getResponseCode();
