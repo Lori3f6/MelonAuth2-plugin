@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class VerificationNotice {
 
-    @SerializedName("verificationCode")
+    @SerializedName("challengeID")
     @Expose
-    private int verificationCode;
+    private int challengeID;
     @SerializedName("expireIn")
     @Expose
     private Long expireIn;
 
     public VerificationNotice(int verificationCode, Long expireIn) {
-        this.verificationCode = verificationCode;
+        this.challengeID = verificationCode;
         this.expireIn = expireIn;
     }
 
@@ -21,7 +21,7 @@ public class VerificationNotice {
     }
 
     public int getVerificationCode() {
-        return verificationCode;
+        return challengeID;
     }
 
     public Long getExpireIn() {

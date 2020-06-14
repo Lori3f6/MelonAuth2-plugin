@@ -29,7 +29,7 @@ public class MelonAuthClient {
 
     public MelonAuthClient(File dataRoot, Logger logger, boolean firstStart) throws IOException, VerificationFailedException {
         if (!dataRoot.mkdir() && !dataRoot.isDirectory()) {
-            throw new IOException(dataRoot.getAbsolutePath() + " should be a directory, but found a fine.");
+            throw new IOException(dataRoot.getAbsolutePath() + " should be a directory, but found a file.");
         }
         File configFile = new File(dataRoot.getAbsolutePath() + "/config.json");
         ClientConfig config;
