@@ -21,7 +21,7 @@ public class MelonAuthClient {
     private static final long OTP_EXPIRATION = 30000;
 
     static {
-        prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        prettyGson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     }
 
     private final MelonTOTP otpServer;
@@ -38,16 +38,16 @@ public class MelonAuthClient {
             config = ClientConfig.getDefault();
         } else if (configFile.isFile()) {
             logger.info("Loading config...");
-            config = prettyGson.fromJson(new FileReader(configFile), ClientConfig.class);
+            config = prettyGson.fromJson(new InputStreamReader(new FileInputStream(configFile), StandardCharsets.UTF_8), ClientConfig.class);
             config.check();
         } else {
             throw new IOException(configFile.getAbsolutePath() + " should be a file, but found a directory.");
         }
         this.config = config;
-        FileWriter writer = new FileWriter(configFile, false);
-        writer.write(prettyGson.toJson(config));
-        writer.flush();
-        writer.close();
+        FileOutputStream configOutputStream = new FileOutputStream(configFile,false);
+        configOutputStream.write(prettyGson.toJson(config).getBytes(StandardCharsets.UTF_8));
+        configOutputStream.flush();
+        configOutputStream.close();
 
         if (!firstStart) {
             //initialize otp server
